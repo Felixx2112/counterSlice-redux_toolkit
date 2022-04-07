@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+## Reducers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- la mot function co ban
 
-## Available Scripts
+```c
+const initValue = { value: 0 };
+const rootReducer = (state = initValue, action) => {
+switch (action.type) {
+case "INCREMENT":
+return {
+...state,
+value: state.value + 1,
+};
 
-In the project directory, you can run:
+    default:
+      return state;
 
-### `npm start`
+}
+};
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **LUU Y:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Gia tri cua state moi luon luon duoc tinh toan dua tren gia tri cua state truoc do. State la tham so thu nhat con action la tham so thu 2(neu co)
 
-### `npm test`
+- Khong bao gio duoc thay doi gia tri cua state hien tai ma chung ta se thuc hien dong lenh 'immutability',ma chung ta tao mot phien ban copy va cap nhap gia tri mong muon
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+_ACTIONS_
 
-### `npm run build`
+`Action la mot object co cac thuoc tinh: type, payload`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```c
+const INCREMENT = {
+type: "INCREMENT",
+// payload: 1,
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+_Action creators_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```c
+const incrementCreator = (data) => {
+return {
+type: "INCREMENT",
+payload: data,
+};
+};
 
-### `npm run eject`
+incrementCreator(10);
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+_DISPATCH_
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`La mot function`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```c
+const dispatch = (action) => {};
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+dispatch(incrementCreator(10));
+```
